@@ -21,8 +21,8 @@ The language within these documents are consistent and provide you as the develo
 
 ## Coding standards
 
- - [General Standards](/Whitespacers/ide-toolkit/wiki/General)
- - [Javascript](/Whitespacers/ide-toolkit/wiki/JavaScript)
+ - [General Standards](/Coding/General.md)
+ - [Javascript](/Coding/JavaScript.md)
  - CSS / SCSS (Neil?)
  - PHP (Ray?)
  - Any other languages...
