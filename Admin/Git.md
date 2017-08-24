@@ -23,10 +23,11 @@ Examples:
 ```
 
 ### Comitting in Github
-
 If a commit is occuring on a Github repository and it fixes or relates to a ticketed issue, the issue number with a preceeding hash **must** be referred to in the commit message. E.g:
 
-```"Add blue buttons to CSS (fixes #2432)"```
+```
+"Add blue buttons to CSS (fixes #2432)"
+```
 
 This will automatically relate the commit to the issue in both directions and make issue tracking a lot easier.
 
@@ -63,7 +64,7 @@ In addition to the extra branches, tags should be created at every release for v
 Once a feature or job based branch has been merged into `master` via `release` or `develop`, it **must** be deleted.
 
 ## Merging
-Merges should always be performed using the `--no-ff` flag or the "Always generate merge commit" option **must** be enabled to avoid the loss of historical information about branches that have since been removed.
+Merges should always be performed using the `--no-ff` flag or the "Always generate merge commit" option. This option **must** be used to avoid the loss of historical information about branches that have since been removed as well as preserve the integrity of commits which were made within the branch itself.
 
 When a merge is complete and any conflicts are resolved, the merged branch **must** then be deleted unless it is a permanent branch, (i.e. `master` or `develop`).
 
