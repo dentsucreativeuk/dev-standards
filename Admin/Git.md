@@ -7,6 +7,29 @@ Commit messages **must** be concise, clear and describe broadly the work done in
 
 If a commit cannot be described in one subject or phrase, it **must** be split into smaller, more detailed commits.
 
+Examples:
+
+```
+// Valid commits:
+"Fix AJAX run-time issue for unauthorised users"
+"Add more padding around the layout boxes"
+"Alter header height to fit new navigation"
+
+// Invalid commits:
+"WIP" // Non descriptive
+"Stuff" // Non descriptive
+"Altered header height" // (Past tense)
+"Amend all JS to use CommonJS includes as this was never going to be reliant on any sort of transpiling process so the ES6 imports are all breaking when run via node" // Too long (use Subject and Message form).
+```
+
+### Comitting in Github
+
+If a commit is occuring on a Github repository and it fixes or relates to a ticketed issue, the issue number with a preceeding hash **must** be referred to in the commit message. E.g:
+
+```"Add blue buttons to CSS (fixes #2432)"```
+
+This will automatically relate the commit to the issue in both directions and make issue tracking a lot easier.
+
 ## Branching
 
 The guidelines in footnote[1] **should** be followed in most cases.
