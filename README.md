@@ -9,8 +9,8 @@ The following guidance details our minimum level of standards for any work creat
 
 These are living 🍃 documents, and can be contributed to by any member of the team, provided a pull request is made beforehand.
 
-## Language used within these documents
-The language within these documents are consistent and provide you as the developer with information that is easy to digest. The following terms are used throughout the rulesets:
+## Keywords used within these documents
+The keywords within these documents are consistent and developers with information that is easy to digest. The following terms are used throughout:
 
  - **must** - The rule defines an action which must be taken.
  - **must not** - The rule defines an action which must not be taken.
@@ -27,6 +27,6 @@ The language within these documents are consistent and provide you as the develo
  - PHP (Ray?)
  - Any other languages...
 
-## Source control standards
+## Administrative standards
 
- - Git (Ian?)
+ - [Git](/Admin/Git.md)

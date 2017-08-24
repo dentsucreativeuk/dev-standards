@@ -1,6 +1,6 @@
 ## Consistency
  - Where practicable, remain consistent with the host code, even if it does not adhere to the below standards. It is the aim of this document for all code we produce to follow the same standard so this rule should only apply to third party libraries and very old code.
- - If you adopt a style not specified within these guidelines, remain consistent throughout that language when used within your document. Such examples of non-specified consistency are:
+ - If a style  not specified within these guidelines is to be adopted, it should remain consistent throughout that language when used within a project. Such examples of non-specified consistency are:
 	- String quoting (single vs double)
 	- Comma dangling, comma placement
 	- Spacing within parentheses
@@ -22,6 +22,6 @@ Files **should not** end with an empty line.
 Individual lines **should not** exceed 80 characters in length, and **must not** exceed 100 characters in length.
 
 ### Exceptions
-1. Language-specific guidance may override the guidance in this document. Please read the standards document for the language you intend to code in, if it exists.
+1. Language-specific guidance may override the guidance in this document. Please read the standards document for the language being written, if it exists.
 
 2. If a file is using another intentation rule and was not created by our team the indentation used within the file should not be changed.

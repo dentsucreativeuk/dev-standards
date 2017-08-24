@@ -1,14 +1,11 @@
 # JavaScript (JS) coding standards
 The following standards outline the requirements for production of JavaScript based in either the Browser or Node environments. Any environment specific advice will be noted.
 
-## Semicolons
-Semicolons **must** be used to terminate JS statements. No exceptions.
-
 ## Broad structure
 JS files **should** be segmented into components and modules. Usually a single module per motive.
 
 ### In-browser
-Each file should contain an immediately invoked function expression (IIFE) which encapsulates any global variables defined.
+Each file should contain an immediately invoked function expression (IIFE) which encapsulates any variables defined.
 
 IIFE definitions may **optionally** begin with a semicolon (`;`) in order to protect against concatenation issues.
 
@@ -16,7 +13,7 @@ Example of correct use:
 
 ```
 !(function($, WS) {
-	// your code here...
+	// code here...
 }(window.jQuery, window.WS));
 ```
 
@@ -36,7 +33,7 @@ const moduleGlobal = 'foo';
 module.exports = function() {
 	let functionVariable = 'bar';
 
-	// your code here...
+	// code here...
 };
 ```
 
@@ -48,6 +45,9 @@ const MyModule = require('./MyModule');
 
 ## The use of 'use strict'
 As our browser support negates compatiblity with IE browsers older than version 9, all JS code **must** use the `'use strict'` statement either within each enclosing IIFE or at the top of each file in the case of Node modules.
+
+## Semicolons
+Semicolons **must** be used to terminate JS statements.
 
 ## Objects
 Objects **should** be created in one of two styles:
@@ -95,7 +95,7 @@ let arrayname = [1, 2, 3, 4, 5];
 ```
 
 ## Functions and function invocations
-Functions may be defined either as named functions or as variable expressions:
+Functions may be defined either as named functions or as variable expressions. They **must** be named with camelCase conventions:
 
 ```
 // named function
@@ -107,7 +107,7 @@ let functionName = function() { // ... }
 // within an object:
 let objectname = {
 	functionName: function() {
-	
+
 	}
 }
 ```
@@ -153,7 +153,7 @@ function functionName()
 }
 ```
 
-Braces **must** be used whenever logical blocks are defined. There are no exceptions.
+Braces **must** be used whenever logical blocks are defined.
 
 ```
 // don't do this
@@ -208,7 +208,7 @@ When using ES6, `let` or `const` are preferred over `var`. `const` **must be** u
 // correct definition
 function functionName(items) {
 	let a;
-	
+
 	for (a = 0; a < items.length; a += 1) {
 		// code...
 	}
@@ -270,9 +270,122 @@ new MyModule();
 Equally, if a function cannot be instantiated with the `new` operator, it **must not** start with an uppercase letter.
 
 ## Commenting
+Single line comments **must** occur with a new line before them and in sentence case.
 
-## Equality operators
+```
+// This is a correctly formatted comment
+dosomestuff();
+
+var a = 0;
+// This comment needs a new line before it
+a = a + 1;
+
+if (a === 0) {
+	// This comment is valid, because it is within a new block
+	a -= 1;
+}
+
+//this comment is not valid because it is in lowercase and doesn't have a preceeding space
+a = 2;
+
+// This comment Is not valid because
+// it is many single line comments separated
+// over multiple lines.
+a = 3;
+
+/*
+ * This is a valid comment, separated
+ * On to multiple lines.
+ */
+a = 4;
+```
+
+### Documenting code
+Every unique method or function **must** be commented in JSDoc format. A bare minimum example of this is as follows. (Note the double asterisk on the opening line):
+
+```
+/**
+ * Converts a decimal number to roman numerals.
+ */
+function convertToRoman(num) {
+	// ...
+}
+```
+
+When parsed by JSDoc, this function would be described using the sentence defined within the doc block comment above. The comment should come immediately before the opening function line and without a space.
+
+A more complex example is as follows:
+
+```
+/**
+ * @param {number} num - The number to convert
+ * @description
+ * Converts a decimal number to roman numerals.
+ * Only use if the preloaded libraries do not already contain a function of this nature.
+ * @returns {string} The supplied number, as a roman numeral.
+ * @see http://mydomain.com/examples/roman.html
+ */
+function convertToRoman(num) {
+	// ..
+}
+```
+
+### When to use comments
+Comments **should** be used when the intent and/or nature of the preceeding code is not immediately obvious. They **should not** be used to make up for unintelligable code, and they **should not** simply repeat the code itself in natural language form.
+
+Example of code repetition:
+
+```
+// Adds 1 to a
+a = a + 1;
+```
+
+Example of an inadequate comment:
+
+```
+// Set track length
+this.track_length += dt * this.outro_speed * 17 * 0.447 / this.inner_track.length;
+```
+
+If a single line of code cannot be explained with a single line of comment, consider refactoring and/or splitting the logic into smaller, more concise chunks.
+
+### References
+ * http://usejsdoc.org - Using JSDoc
+ * https://www.npmjs.com/package/jsdoc - JSDoc node implementation
+
+### Exceptions
+1. If a single line comment starts at the beginning of a new block or is commented out code (which is covered in the [Git](/Admin/Git.md) guidelines), it does not require a new line before it.
+
+## Comparison operators
+When comparing values, strict operators **must** always be used. If a loose operator is required for correct functioning of the code, it **must** be refactored to support strict operators.
+
+```
+// Correct operator use:
+if (a === 0) {
+	// ...
+}
+
+var b = (a === 0 || c !== 2);
+
+// Incorrect operator use:
+if (a == 0 || b == null || c == "1") {
+	// ...
+}
+
+// Shorthand "truthy" comparisons are still acceptable:
+if (a || !b) {
+	// ...
+}
+```
+
+### Exceptions
+1. If comparing a value that is considered "truthy" or "falsy", the shorthand comparison (such as `!` is still valid).
 
 ## Strings
+When creating string literals, single quotes **should** be used at all times. If dealing with legacy code and/or are required by some other convention to use double quotes, the quote style **must** be consistent accross the whole project.
 
-## Iterating with `for`
+If a single quote within a string following the above convention is required, it can be escaped with a backslash, e.g:
+
+```
+var str = 'My name\'s Bob. How are you?';
+```
