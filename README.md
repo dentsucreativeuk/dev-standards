@@ -28,6 +28,7 @@ The keywords within these documents are consistent and developers with informati
 
 ## Administrative standards
 
+ - [Git](/Admin/BrowserCompatibility.md)
  - [Git](/Admin/Git.md)
 
 ## Contributing
