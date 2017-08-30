@@ -9,7 +9,7 @@
 	- Naming conventions
 
 ## Refactoring
-It is not Whitespace policy to spend inordinate amounts of time refectoring old code that does not follow the standards. Code will eventually be replaced and it is not time-effective to create work consisting of purely syntactical changes.
+It is not Whitespace policy to spend inordinate amounts of time refactoring old code that does not follow the standards. Code will eventually be replaced and it is not time-effective to create work consisting of purely syntactical changes.
 
 ### Exceptions
 1. If the code requires refactoring due to a known and replicated issue, then syntax improvements can be crucial to improving the code and are welcomed.
