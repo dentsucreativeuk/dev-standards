@@ -1,3 +1,5 @@
+# General coding standards
+
 ## Consistency
  - Where practicable, remain consistent with the host code, even if it does not adhere to the below standards. It is the aim of this document for all code we produce to follow the same standard so this rule should only apply to third party libraries and very old code.
  - If a style  not specified within these guidelines is to be adopted, it should remain consistent throughout that language when used within a project. Such examples of non-specified consistency are:
@@ -17,9 +19,14 @@ Unless otherwise stated in the language-specific guidance, all indentation **mus
 
 Lines should be spaced sensibly with readability in mind. Individual lines **must not** have whitespace after the last visible character.
 
-Files **should not** end with an empty line.
+## Line length
+Individual lines **should not** exceed 80 characters in length, and **must not** exceed 120 characters in length.
 
-Individual lines **should not** exceed 80 characters in length, and **must not** exceed 100 characters in length.
+### Exceptions
+1. The exception to the hard 120 character line length limit is when creating Markdowno or plain-text documentation for applicable projects.
+
+## File endings
+Text files **must** end with an empty line, ensuring that the last line with visible characters ends with a line-break character.
 
 ### Exceptions
 1. Language-specific guidance may override the guidance in this document. Please read the standards document for the language being written, if it exists.

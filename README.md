@@ -17,7 +17,7 @@ The keywords within these documents are consistent and developers with informati
  - **should** - The rule defines actions which should be taken, but only where practical and may be excepted.
  - **should not** The rule defines actions which should not be taken, but only where practical.
  - **exceptions** - Some rules have exceptions which when applicable, usually mean that the rule can be safely ignored.
- - **optionally** - This portion of a rule is completely optional, but still considered good practice.
+ - **optionally** - This portion of a rule is optional, but still considered good practice.
 
 ## Coding standards
 
