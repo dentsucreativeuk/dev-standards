@@ -10,8 +10,3 @@ The following documentation standards **must** be followed when documenting with
 
  - JavaScript (ES5+) - [JSDoc](http://usejsdoc.org)
  - PHP - [PHPDoc](https://phpdoc.org)
-
-
-(JSDoc)
-(PHPDoc)
-(CSS?)
