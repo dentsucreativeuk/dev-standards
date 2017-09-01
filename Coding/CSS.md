@@ -33,6 +33,16 @@ width: .725em;
 width: 0.725em;
 ```
 
+Numbers also **must not** contain trailing zeros. E.g:
+
+```
+// Correct
+width: 1.01px;
+
+// Incorrect
+width: 1.0100px;
+```
+
 If the sum total of a property value equates to zero, a unit **must not** be used. E.g:
 
 ```
@@ -130,3 +140,30 @@ Media queries, where applicable, **must** be defined in their own files organise
  1. General media response CSS that doesn't fit within the standard response points.
  2. Component based CSS, organised by component name.
  3. Standard response point based CSS, subdivided identically to top level.
+
+## Linting
+All SASS/CSS should be linted using [Stylelint](https://stylelint.io). The configuration file can be found within the [IDE Toolkit](https://github.com/Whitespacers/ide-toolkit) repository, and the following main rules are enforced:
+
+| Rule | Enforcement |
+| ---  | --- |
+| `color-hex-case` | Colours defined in hexadecimal format must be in lower-case. |
+| `color-no-invalid-hex` | Disallows hexadecimal colour definitions that are non computable. |
+| `font-family-name-quotes` | Ensures that fonts defined with `font-family` are quoted unless they are keywords (`serif`, `monospace` etc). |
+| `font-family-no-duplicate-names` | Disallows duplicate names within a font stack. |
+| `number-leading-zero` | Enforces the leading zero rule above. |
+| `number-no-trailing-zeros` | Enforces the trailing zero rule above. |
+| `number-max-precision` | Prevents numbers from being expressed with a precision greater than **10**. |
+| `string-no-newline` | Prevents the use of unescaped newlines within string literals. |
+| `string-quotes` | Enforces the use of single quotes only within strings. |
+| `length-zero-no-unit` | Enforces the non-unit zero rule above. |
+| `unit-whitelist` | Allows the following units to be used: 'em', 'rem', '%', 's', 'px', 'vh', 'vw', 'deg'. |
+| `shorthand-property-no-redundant-values` | Prevents redundant values from being expressed within shorthand properties. |
+| `property-case` | Ensures that all property names are expressed in lower case. |
+| `indentation` | Enforces single **tab** indentation, except for subsequent values on new lines in the same property. |
+| `block-closing-brace-empty-line-before` | Ensures no empty lines are created before the closing brace of a single rule. |
+| `block-no-empty` | Disallows empty rule blocks. |
+| `max-empty-lines` | Enforces a maximum of **2** empty lines between rules and blocks. |
+| `no-eol-whitespace` | Disallows whitespace at the end of lines. |
+| `no-extra-semicolons` | Disallows multiple semicolons at the end of properties. |
+
+The rules above can be found in greater detail on the [Stylelint website](https://stylelint.io/user-guide/rules/).
