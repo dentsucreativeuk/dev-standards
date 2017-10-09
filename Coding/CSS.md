@@ -1,11 +1,14 @@
 # CSS / SCSS coding standards
 The following standards outline the requirements for production of CSS or SCSS code. Any environment specific advice will be noted.
 
-## BEM [TBD]
+## Languages & frameworks used
+All CSS should be produced in SCSS (SASS), and only in plain CSS if otherwise agreed with the technical lead.
+
+## BEM
 Whitespace produced CSS should directly follow the BEM methodology standard for naming schemes. The full standards are detailed at the [official BEM website](http://getbem.com/naming/).
 
 ## Filenames
-All CSS files should either use either the `.css` or `.scss` extensions, depending on whether pure CSS or SCSS is being used ([TBD]).
+All CSS files should either use either the `.css` or `.scss` extensions, depending on whether pure CSS or SCSS is being used.
 
 ## Style
 ```
