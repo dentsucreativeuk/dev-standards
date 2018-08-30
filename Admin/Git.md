@@ -77,8 +77,6 @@ Releases tagged for staging should follow the following schema
 
 In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *staging-1.1.20* the next release would be incremental to this (i.e. staging-1.1.21).
 
-In any case a new version should *always* be larger than the previous version.
-
 #### Production
 
 Releases tagged for production should follow the following schema
@@ -86,8 +84,6 @@ Releases tagged for production should follow the following schema
 `production-[release-number]`
 
 In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *production-1.1.20* the next release would be incremental to this (i.e. production-1.1.21).
-
-In any case a new version should *always* be larger than the previous version.
 
 ## Merging
 Merges should always be performed using the `--no-ff` flag or the "Always generate merge commit" option. This option **must** be used to avoid the loss of historical information about branches that have since been removed as well as preserve the integrity of commits which were made within the branch itself.
