@@ -69,21 +69,23 @@ Releases within Capistrano managed projects are typically done via tags. A tag w
 
 This is enforced for Staging and Production environments. The schema for naming these tags is outlined below.
 
+Numbering uses the Semantic versioning system[2].
+
 #### Staging
 
-Releases tagged for staging should follow the following schema
+Releases tagged for staging should follow the following schema.
 
 `staging-[release-number]`
 
-In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *staging-1.1.20* the next release would be incremental to this (i.e. staging-1.1.21).
+If the current release is *staging-1.1.10* the next release would be incremental to this (i.e. staging-1.1.11).
 
 #### Production
 
-Releases tagged for production should follow the following schema
+Releases tagged for production should follow the following schema.
 
 `production-[release-number]`
 
-In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *production-1.1.20* the next release would be incremental to this (i.e. production-1.1.21).
+If the current release is *production-1.1.20* the next release would be incremental to this (i.e. production-1.1.21).
 
 ## Merging
 Merges should always be performed using the `--no-ff` flag or the "Always generate merge commit" option. This option **must** be used to avoid the loss of historical information about branches that have since been removed as well as preserve the integrity of commits which were made within the branch itself.
