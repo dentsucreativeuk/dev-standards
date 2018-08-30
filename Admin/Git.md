@@ -75,9 +75,9 @@ Releases tagged for staging should follow the following schema
 
 `staging-[release-number]`
 
-In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *staging-1.1.0* the next release your tag will be *staging-1.1.1*
+In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *staging-1.1.00* the next release your tag will be *staging-1.1.01*
 
-`git tag staging-1.0.0`
+`git tag staging-1.0.01`
 
 `git push origin --tags`
 
@@ -87,9 +87,9 @@ Releases tagged for production should follow the following schema
 
 `production-[release-number]`
 
-In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *production-1.1.0* the next release your tag will be *production-1.1.1*
+In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *production-1.1.00* the next release your tag will be *production-1.1.01*
 
-`git tag production-1.0.0`
+`git tag production-1.0.01`
 
 `git push origin --tags`
 
