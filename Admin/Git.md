@@ -63,6 +63,36 @@ In addition to the extra branches, tags should be created at every release for v
 
 Once a feature or job based branch has been merged into `master` via `release` or `develop`, it **must** be deleted.
 
+### When using Capistrano managed projects
+
+Releases within Capistrano managed projects typically done via tags. A tag would be created off the master branch, and this tag would be deployed to the corresponding deployment stage.
+
+This is enforced for Staging and Production environments. The schema for naming these tags is outlined below.
+
+#### Staging
+
+Releases tagged for staging should follow the following schema
+
+`staging-[release-number]`
+
+In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *staging-1.1.0* the next release your tag will be *staging-1.1.1*
+
+`git tag staging-1.0.0`
+
+`git push origin --tags`
+
+#### Production
+
+Releases tagged for production should follow the following schema
+
+`production-[release-number]`
+
+In order to create a tag, use the commands below. Also note the version number below is just an example, follow the numbering convention, i.e. if the current release is *production-1.1.0* the next release your tag will be *production-1.1.1*
+
+`git tag production-1.0.0`
+
+`git push origin --tags`
+
 ## Merging
 Merges should always be performed using the `--no-ff` flag or the "Always generate merge commit" option. This option **must** be used to avoid the loss of historical information about branches that have since been removed as well as preserve the integrity of commits which were made within the branch itself.
 
