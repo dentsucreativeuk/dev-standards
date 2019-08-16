@@ -88,9 +88,31 @@ Releases tagged for production should follow the following schema.
 If the current release is *production-1.1.20* the next release would be incremental to this (i.e. production-1.1.21).
 
 ## Merging
-Merges should always be performed using the `--no-ff` flag or the "Always generate merge commit" option. This option **must** be used to avoid the loss of historical information about branches that have since been removed as well as preserve the integrity of commits which were made within the branch itself.
+Merges **must** be performed using the `--no-ff` flag or an equivalent "Create merge commit" option. This will help avoid the loss of historical information about branches that have since been removed as well as preserve the integrity of commits which were made within the branch itself.
 
 When a merge is complete and any conflicts are resolved, the merged branch **must** then be deleted unless it is a permanent branch, (i.e. `master` or `develop`).
+
+## Bitbucket pull requests
+On a protected repository, the `master` or `develop` branches may not be directly writeable. In this case, merges can be made with a rull request.
+
+Pull requests are usually handled by a single repository or project leader, who is responsible for reviewing and merging branches. It is then the responsibility of either the project lead or developer to deploy the resulting code. This decision is made during the pull request.
+
+### Creating pull requests
+To create a pull request, three things are required:
+
+ 1. A subject (usually the broad name of the work done).
+ 2. An overall description of the work.
+ 3. The name of a reveiwer who can approve the request.
+
+Once this information is available, a pull request can be made using the BitBucket website. See "Pull requests" within the repository navigation.
+
+Throughout the lifetime of a pull request, there may be comments requesting clarification or amendments to the work. This may result in further work required. **When commits are created on the branch being merged, the pull request will be automatically updated**.
+
+### Approving
+**Certain repositories require at least one approval before a PR can be merged**. If you are responsible for approvals, remember to review and approve or comment within a timely manner, explaining what is required should the approval be declined.
+
+### Merging
+**Once the PR has been approved and all checks passed, it can be merged**. This will be done by the reviewer or project lead.
 
  * [1] http://nvie.com/posts/a-successful-git-branching-model/
  * [2] http://semver.org
