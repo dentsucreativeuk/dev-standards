@@ -118,8 +118,9 @@ An example workflow for producing a new feature, releasing it and cleaning up wi
 
  1. A branch is created from `develop` called `feature/my-great-feature`. It receives 10 commits until the work is completed.
  2. The work is then merged back into `develop` and after testing and deployment to the development environment, the `feature/my-great-feature` branch is removed.
- 3. A `release/v1.4.0` branch is made from the tip of `develop` and then deployed to a staging environment.
- 4. Once tested and known to be working, the `release/v1.4.0` branch is merged into master and deployed into production.
+ 3. A `release/v1.4.0` candidate branch is made from the tip of `develop` and then deployed to a staging environment.
+ 4. From this point, only bug fixes may be applied to the release candidate branch. Any new features **must** cancel the release and pull the repository back into development. This may involve rolling back the staging environment.
+ 5. Once tested and known to be working, the `release/v1.4.0` branch is merged into master and deployed into production.
 
  * [1] http://nvie.com/posts/a-successful-git-branching-model/
  * [2] http://semver.org
