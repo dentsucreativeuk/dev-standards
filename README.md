@@ -25,6 +25,7 @@ The keywords within these documents are consistent and developers with informati
  - [Javascript](/Coding/JavaScript.md)
  - [CSS / SCSS](/Coding/CSS.md)
  - [PHP](/Coding/PHP.md)
+ - [Linting](/Coding/Linting.md)
 
 ## Administrative standards
 
