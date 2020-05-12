@@ -5,16 +5,16 @@ With a few small exceptions, the majority of work undertaken at Whitespace is no
 In short, any new project that is not versioned **should** follow these guidelines. Any project utilising Capistrano or other automated deployment tool **must** follow these guidelines.
 
 ## Target branches
-In any project under these guidelines, the following branches will always exist, with the exception of `staging`:
+In any project under these guidelines, the following branches will always exist:
 
  - `master`
  - `development`
  - `staging`
  - `production`
 
-With the exception of `master`, these are referred to as the **target** branches. This means they will never be deleted, and are used when deploying work. Commits **must never** be made directly to these branches.
+With the exception of `master`, these are referred to as the **target** branches. This means they will never be deleted, and are used when deploying work. Commits **must never** be made directly to the target branches.
 
-The target branches **must** only contain commits that have been merged in from work or hotfix branches. The `master` branch **must** only be merged into once work or hotfix branches have been fully merged into the other three, and the work is considered complete.
+The target branches **must** only contain commits that have been merged in from _work_ or _hotfix_ branches. The `master` branch **must** only be merged into once work or hotfix branches have been fully merged into the other three, and the work is considered complete.
 
 ## Work and hotfix branches
 These are the branches in which commits should be made.
@@ -38,7 +38,7 @@ With `WJOBB0001/new-search`, `WJOBB0001/featured-cta-panels` and `WJOBB0003/rela
 ## Working in the repository
 An example workflow for a simple change could therefore run as follows:
 
- 1. A repository is opened.
+ 1. A repository is cloned.
  2. The branch `master` is checked out, fetched and pulled.
  3. A new branch named `WJOBB0001/new-search` is created using the tip of `master` as a base.
  4. Work is then done within `WJOBB0001/new-search` and 10 commits are made. The work is tested using a local web server.
@@ -67,7 +67,7 @@ Conflicts are an inevitable part of Git management, and while never completely a
  2. **Avoid working outside your remit.** When working within files, avoid changing code that isn't directly related to the work. This ensures commit patches are easy to digest as well as the reliability of potential merges.
 
 ## Commit messages
-Commit messages **must** be concise, clear and broadly describe the work done in that commit. They **should** be written in the imperative present tense, and the first line of a commit **should** be within 50 characters in length.
+Commit messages **must** be concise, clear and broadly describe the work done in that commit. They **should** be written in the imperative present tense, and the first line of a commit **should** be within 50 characters in length. If a commit message needs to be described more thoroughly use the [_Subject and Message_](https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-commit.html#_discussion) syntax: where the first line is taken as the subject, then a line return, then the body of the message.
 
 If a commit cannot be described in one subject or phrase, it **must** be split into smaller, more detailed commits.
 
