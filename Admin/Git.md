@@ -1,4 +1,4 @@
-# Git standards
+# Git standards (deprecated)
 The following standards dictate the minimum level requirements for any work undertaken in a Whitespace project. These standards should be considered in addition to the known best practices for git usage and do not replace them unless explicitly overriden.
 
 There are four main aspects when working with Git:
