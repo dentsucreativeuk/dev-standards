@@ -30,7 +30,7 @@ The keywords within these documents are consistent and developers with informati
 ## Administrative standards
 
  - [Browser Compatibility](/Admin/BrowserCompatibility.md)
- - [Git](/Admin/Git-New.md)
+ - [Git](/Admin/Git.md)
  - [Git (deprecated)](/Admin/Git.md)
 
 ## Contributing

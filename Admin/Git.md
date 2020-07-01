@@ -1,44 +1,73 @@
-# Git standards (deprecated)
-The following standards dictate the minimum level requirements for any work undertaken in a Whitespace project. These standards should be considered in addition to the known best practices for git usage and do not replace them unless explicitly overriden.
+# Git standards
+With a few small exceptions, the majority of work undertaken at Whitespace is not compiled or released software, and therefore does not necessitate a versioning strategy. However, due to the nature of websites this does mean the repository should be managed in a consistent, reliable manner.
 
-There are four main aspects when working with Git:
+## Which projects does this apply to?
+In short, any new project that is not versioned **should** follow these guidelines. Any project utilising Capistrano or other automated deployment tool **must** follow these guidelines.
 
- - Branching
- - Comitting
- - Merging
- - Pull requests
- - Deployment
+## Target branches
+In any project under these guidelines, the following branches will always exist:
 
-## Branching & Merging
-The guidelines in footnote[1] **should** be followed in most cases, and **must** be followed for versioned software.
+ - `master`
+ - `development`
+ - `staging`
+ - `production`
 
-Every git repository should at the very least contain a `master` branch. The `HEAD` of which **must** contain code that is considered ready for production targets.
+With the exception of `master`, these are referred to as the **target** branches. This means they will never be deleted, and are used when deploying work. Commits **must never** be made directly to the target branches.
 
-### Types of branches
-There are two main "types" of branch within our working guidelines. Target branches are created as merge targets, with no commits made directly to them. Working branches are created to contain individual commits.
+The target branches **must** only contain commits that have been merged in from _work_ or _hotfix_ branches. The `master` branch **must** only be merged into once work or hotfix branches have been fully merged into the other three, and the work is considered complete.
 
-The following standard branch names are used:
+## Work and hotfix branches
+These are the branches in which commits should be made.
 
- * `master` - A target branch containing the current production code at its `HEAD`.
- * `develop` - A target branch which should contain code syncronised with the main development/UAT environment at its `HEAD`.
- * `feature/[name]` - Working branches containing single project work. There may be many of these with different `description` values at once. See example below.
- * `try/[name]` - Working branches containing experimental project work.
- * `release/v[version]` - An additional target branch for pre-releases of versioned projects.
- * `hotfix-[name]` - Working branches used when a quick fix is required to a project that is not necessarily part of a job.
+Work branches are for longer term (1+ day) projects, and **must** be prefixed with a job number and a forward slash.
 
-In the case that a job code is being used, a short description of the work after a forward slash **must** also be used, e.g:
+A hotfix branch can be used for short term and emergency fixes, and **should** be labelled `hotfix`, and only one branch of that nature should exist at a time.
 
-```
-feature/XX0001/minor-map-amends
-feature/XX0001/optimising-maps
-feature/AC0023/leaflets
-try/XX0001/double-columns
-```
+An example repository during work in progress might look like this:
 
-In the case of all projects, Work **should not** take place directly in the target branches like `develop` or `master`.
+ - `master`
+ - `WJOBB0001/new-search`
+ - `WJOBB0001/featured-cta-panels`
+ - `WJOBB0003/related-services`
+ - `hotfix`
+ - `development`
+ - `production`
 
-## Committing
-Commit messages **must** be concise, clear and broadly describe the work done in that commit. They **should** be written in the imperative present tense, and the first line of a commit **should** be within 50 characters in length.
+With `WJOBB0001/new-search`, `WJOBB0001/featured-cta-panels` and `WJOBB0003/related-services` being long term projects in progress, which may have been merged into `development` already, and a single `hotfix` branch which contains commits resolving a side-effect of a past deployment, already on `development` and ready to merge into `production`.
+
+## Working in the repository
+An example workflow for a simple change could therefore run as follows:
+
+ 1. A repository is cloned.
+ 2. The branch `master` is checked out, fetched and pulled.
+ 3. A new branch named `WJOBB0001/new-search` is created using the tip of `master` as a base.
+ 4. Work is then done within `WJOBB0001/new-search` and 10 commits are made. The work is tested using a local web server.
+ 5. Once the work is functionally complete, it is merged into `development` and deployed to the development environment.
+ 6. After the work is approved, the branch `WJOBB0001/new-search` is then merged into `staging` or `production`, depending on the number of environments.
+ 7. Only when the work is live and complete would the `WJOBB0001/new-search` branch be merged into `master` and then **deleted** from both the local and any remote repositories it has been pushed to.
+
+### Deploying & transpiling front end code
+Until we have fully developed CI solutions, deploying is still performed directly by the developer, usually using a tool such as Capistrano. However, it is worth considering the following aspects:
+
+ - Check the correct target branch is checked out before deploying as front end assets e.g: running Webpack, gulp, SVG sprites etc should be created from the correct source code for deployment.
+ - Ensure the correct work branch is checked out after a deployment, so work continues within that branch.
+
+### Further development needed?
+If more work is required after step 5 or 6, then the original branch `WJOBB0001/new-search` should be checked out and further commits made. It can then be re-merged into the appropriate **target** branches to repeat steps 5 onwards.
+
+### Rolling back
+If the work is cancelled then the target branches must be cleaned. Either by reverting the merge commits, or if not yet pushed, resetting the head to the point before the merge commits.
+
+If however, the work has progressed enough to end up on `master`, rollback should only be performed by reversion, regardless of remote state.
+
+### Avoiding conflicts
+Conflicts are an inevitable part of Git management, and while never completely avoidable, there are steps we can take to reduce their impact and frequency of occurence:
+
+ 1. **Keep commits small and simple.** The old adage "push once, commit often" still applies, and for good reason. Smaller commits mean less work to reason about when merging, and make commit messages easier to write.
+ 2. **Avoid working outside your remit.** When working within files, avoid changing code that isn't directly related to the work. This ensures commit patches are easy to digest as well as the reliability of potential merges.
+
+## Commit messages
+Commit messages **must** be concise, clear and broadly describe the work done in that commit. They **should** be written in the imperative present tense, and the first line of a commit **should** be within 50 characters in length. If a commit message needs to be described more thoroughly use the [_Subject and Message_](https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-commit.html#_discussion) syntax: where the first line is taken as the subject, then a line return, then the body of the message.
 
 If a commit cannot be described in one subject or phrase, it **must** be split into smaller, more detailed commits.
 
@@ -67,12 +96,10 @@ If a commit is occuring on a Github repository and it fixes or relates to a tick
 This will automatically relate the commit to the issue in both directions and make issue tracking a lot easier.
 
 ## Merging
-Merges **should** be performed using the `--no-ff` flag or an equivalent "Create merge commit" option. This will help avoid the loss of historical information about branches that have since been removed as well as preserve the integrity of commits which were made within the branch itself.
-
-When a merge is complete and any conflicts are resolved, the merged branch **must** then be deleted unless it is a target branch, (i.e. `master` or `develop`).
+Merges **must** be performed using the `--no-ff` flag or an equivalent "Always create merge commits" option. This will help avoid the loss of topological information about branches that have since been removed.
 
 ## Bitbucket pull requests
-On a protected Bitbucket repository, the `master` or `develop` branches may not be directly writeable. In this case, merges can be made with a rull request.
+On a protected Bitbucket repository, the **target** branches may not be directly writeable. In this case, merges can be made with a pull request.
 
 Pull requests are usually handled by a single repository or project leader, who is responsible for reviewing and merging branches. It is then the responsibility of either the project lead or developer to deploy the resulting code. This decision is made during the pull request.
 
@@ -92,35 +119,3 @@ Once this information is available, a pull request can be made using the BitBuck
 
 ### Merging
 **Once the PR has been approved and all checks passed, it can be merged**. This will be done by the reviewer or project lead.
-
-## Deployments
-There are two deployment methods used at Whitespace. The difference being when the project is versioned or not.
-
-### Within non-versioned projects
-In a non-versioned project, the `develop` branch is used for deploying to the development environment, and `master` is used for deploying to the production and staging environments.
-
-#### Example workflow
-An example workflow for producing a new feature, releasing it and cleaning up within a **non-versioned project** would be as follows:
-
- 1. A branch is created from `develop` called `feature/my-great-feature`. It receives 6 commits until the work is completed.
- 2. The work is then merged back into `develop` and after testing and deployment to the development environment, the `feature/my-great-feature` branch is removed.
- 3. The `develop` branch is then merged into `master` and deployed subsequently to the staging environment. If this works, it is then deployed to the production environment.
-
-### Within versioned projects
-Non-development releases within versioned projects are typically done via tags. A tag **must** be created within the `master` branch, and this tag would be deployed to the corresponding deployment stage.
-
-Tags should be created at every release. The format for tags **must** follow `v#-#-#` Where the numbering uses the Semantic versioning system[2].
-
-This is enforced for Staging and Production environments.
-
-#### Example workflow
-An example workflow for producing a new feature, releasing it and cleaning up within a **versioned project** would be as follows:
-
- 1. A branch is created from `develop` called `feature/my-great-feature`. It receives 10 commits until the work is completed.
- 2. The work is then merged back into `develop` and after testing and deployment to the development environment, the `feature/my-great-feature` branch is removed.
- 3. A `release/v1.4.0` candidate branch is made from the tip of `develop` and then deployed to a staging environment.
- 4. From this point, only bug fixes may be applied to the release candidate branch. Any new features **must** cancel the release and pull the repository back into development. This may involve rolling back the staging environment.
- 5. Once tested and known to be working, the `release/v1.4.0` branch is merged into master and deployed into production.
-
- * [1] http://nvie.com/posts/a-successful-git-branching-model/
- * [2] http://semver.org
