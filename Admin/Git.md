@@ -16,6 +16,8 @@ With the exception of `master`, these are referred to as the **target** branches
 
 The target branches **must** only contain commits that have been merged in from _work_ or _hotfix_ branches. The `master` branch **must** only be merged into once work or hotfix branches have been fully merged into the other three, and the work is considered complete.
 
+Except for in special circumstances such as rebasing or tidying up branch issues, `master` is also the only branch which should be used as a root for new banches (see [#FAQ](FAQ)).
+
 ## Work and hotfix branches
 These are the branches in which commits should be made.
 
@@ -119,3 +121,31 @@ Once this information is available, a pull request can be made using the BitBuck
 
 ### Merging
 **Once the PR has been approved and all checks passed, it can be merged**. This will be done by the reviewer or project lead.
+
+## FAQ
+
+### Why only branch from `master`?
+
+Consider this scenario:
+
+1. **developer A** branches from `master` into branch `XX001/dev-1-work` and produces a number of commits.
+2. **developer A** then needs the work reviewed. This branch is then merged into `development` and the work in that branch is deployed.
+3. Some days later, **developer B** branches from `development` and creates `XX002/dev-2-work`. Commits are made, and then **developer B** also needs to deploy. The branch is then merged back into `development` and reviewed.
+4. **developer A's** work is delayed by three weeks. The client cannot put it live without sign off from another party.
+5. **developer B's** work is approved! The work is merged from `XX002/dev-2-work` into `production` and deployed.
+6. The QA team notice that work done by **developer A** has been also put live, as it was within the `development` branch at the time **developer B** created their branch.
+7. The client calls, absolutely livid that the change has been put live, and the dev team have to scramble to figure out what went wrong.
+
+This is a rather extreme example, but not without precedent. The important thing to remember is that `master` is the only branch which contains work which is both complete and live, which is what will form the basis of all further work.
+
+### Why not use `production` instead of `master` as the root branch?
+
+It could be possible, and `production` is for all intents and purposes, and almost exact clone of master in terms of use, which means there are no technical limitations with using it in this way.
+
+However, `production` is a *target* branch, and should only be used as such in order to ensure deployments from that branch work well and that we can confidently compare it to the real production environments.
+
+### What is the importance of "merge commits"?
+
+When merging a branch into another, Git has a very useful feature to keep the branch topology tidy, called "fast forwards". If it determines the new commits are chronologically in advance of the tip of your target branch, it will simply "fast forward" the target to the tip of the new branch during a commit. This produces a nice clean history, especially when viewing in graph modes. Unfortunately, this has the added side effect of essentially wiping out the historical information of where a branch was created, which commits were made within it, and then when it was merged.
+
+The benefit to a merge commit, is that despite its tendency to produce more complex topology grahps, the history is retained and makes understanding the work which went into an old (often deleted) branch much easier.
