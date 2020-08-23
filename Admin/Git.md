@@ -148,4 +148,4 @@ However, `production` is a *target* branch, and should only be used as such in o
 
 When merging a branch into another, Git has a very useful feature to keep the branch topology tidy, called "fast forwards". If it determines the new commits are chronologically in advance of the tip of your target branch, it will simply "fast forward" the target to the tip of the new branch during a commit. This produces a nice clean history, especially when viewing in graph modes. Unfortunately, this has the added side effect of essentially wiping out the historical information of where a branch was created, which commits were made within it, and then when it was merged.
 
-The benefit to a merge commit, is that despite its tendency to produce more complex topology grahps, the history is retained and makes understanding the work which went into an old (often deleted) branch much easier.
+The benefit to a merge commit, is that despite its tendency to produce more complex topology graphs, the history is retained and makes understanding the work which went into an old (often deleted) branch much easier.
