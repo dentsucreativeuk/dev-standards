@@ -1,4 +1,5 @@
 # Baseline browser compatibility
+> Part of [Administration](/Admin/Index.md)
 
 We **must** provide browser compatability as per our client-facing [Browser Support](https://whitespacers.com/browser-support) documentation.
 

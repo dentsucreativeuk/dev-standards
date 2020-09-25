@@ -1,4 +1,5 @@
 # General coding standards
+> Part of [Coding](/Coding/Index.md)
 
 ## Consistency
  - Where practicable, remain consistent with the host code, even if it does not adhere to the below standards. It is the aim of this document for all code we produce to follow the same standard so this rule should only apply to third party libraries and very old code.

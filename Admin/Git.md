@@ -1,4 +1,6 @@
-# Git standards
+# Git Source Control
+> Part of [Administration](/Admin/Index.md)
+
 With a few small exceptions, the majority of work undertaken at Whitespace is not compiled or released software, and therefore does not necessitate a versioning strategy. However, due to the nature of websites this does mean the repository should be managed in a consistent, reliable manner.
 
 ## Which projects does this apply to?

@@ -1,4 +1,6 @@
 # JavaScript (JS) coding standards
+> Part of [Coding](/Coding/Index.md) / [Languages](/Coding/Languages/Index.md)
+
 The following standards outline the requirements for production of JavaScript based in either the Browser or Node environments. Any environment specific advice will be noted.
 
 ## Broad structure

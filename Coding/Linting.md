@@ -1,4 +1,6 @@
 # Linting
+> Part of [Coding](/Coding/Index.md)
+
 The following tools and resources will should be used to lint and perform other quality checks on your code.
 
 Linters are pre-configured with the IDE Toolkit available here:

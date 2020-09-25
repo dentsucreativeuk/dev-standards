@@ -19,19 +19,12 @@ The keywords within these documents are consistent and developers with informati
  - **exceptions** - Some rules have exceptions which when applicable, usually mean that the rule can be safely ignored.
  - **optionally** - This portion of a rule is optional, but still considered good practice.
 
-## Coding standards
+## Menu
 
- - [General Standards](/Coding/General.md)
- - [Javascript](/Coding/JavaScript.md)
- - [CSS / SCSS](/Coding/CSS.md)
- - [PHP](/Coding/PHP.md)
- - [Linting](/Coding/Linting.md)
-
-## Administrative standards
-
- - [Browser Compatibility](/Admin/BrowserCompatibility.md)
- - [Git](/Admin/Git.md)
- - [Git (deprecated)](/Admin/Git.md)
+ - [Administration](/Admin/Index.md) /
+ - [Coding](/Coding/Index.md) /
+ - [Production](/Production/Index.md) /
+ - [Resources](/Resources/Index.md) /
 
 ## Contributing
 If you want to contribute, modify or otherwise get involved with the production of these standards: Great! Thank you! Please look at the [Contributing](/CONTRIBUTING.md) file before submitting any requests and feel free to create an issue if you aren’t sure what kind of thing it is you want to add.

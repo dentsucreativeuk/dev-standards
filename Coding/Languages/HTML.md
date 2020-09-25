@@ -1,4 +1,6 @@
 # HTML standards
+> Part of [Coding](/Coding/Index.md) / [Languages](/Coding/Languages/Index.md)
+
 When working with HTML, there are only a few broad standards we work towards:
 
  1. That all HTML is of type HTML5 (`<!DOCTYPE html>`).
