@@ -18,7 +18,7 @@ With the exception of `master`, these are referred to as the **target** branches
 
 The target branches **must** only contain commits that have been merged in from _work_ or _hotfix_ branches. The `master` branch **must** only be merged into once work or hotfix branches have been fully merged into the other three, and the work is considered complete.
 
-Except for in special circumstances such as rebasing or tidying up branch issues, `master` is also the only branch which should be used as a root for new banches (see [FAQ](#FAQ)).
+Except for in special circumstances such as rebasing or tidying up branch issues, `master` is also the only branch which should be used as a root for new branches (see [FAQ](#FAQ)).
 
 ## Work and hotfix branches
 These are the branches in which commits should be made.
