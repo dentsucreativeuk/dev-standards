@@ -37,7 +37,21 @@ widgetsco-azure-vm-01
 Domains pointing to the relevant servers must be formatted as such:
 
 ```
-	<client>[-suffix].<service-product>-<index>.wsdev.org
+  // SSH Shortname
+  <client>[-suffix]-<index>.<service-product>
+
+  // Domain
+	<client>[-suffix]-<index>.<service-product>.wsdev.org
+```
+
+For instance
+
+```
+  // SSH Shortname
+  widgetsco-01.aws-ec2
+
+  // Domain
+  widgetsco-01.aws-ec2.wsdev.org
 ```
 
 These are not public or client facing domains, and if there is a requirement for such a domain, it will be created in accordance with the standard `client-project[.test|stage].wsdev.org` scheme.
