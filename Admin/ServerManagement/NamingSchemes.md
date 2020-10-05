@@ -6,10 +6,10 @@ Newly provisioned servers must be named in a consistent, predictable manner acco
  - Ephemeral servers created as part of a cluster
  - Existing or legacy servers not on either AWS, Azure or DigitalOcean.
 
-The naming of a server should be as follows:
+The naming of a server must be as follows:
 
 ```
-	<client>-<service[-product]>-<index>
+	<client>-<service[-product]>[-suffix]-<index>
 ```
 
 Comprising of the following components:
@@ -17,6 +17,7 @@ Comprising of the following components:
  - `client` — Brief client name
  - `service` — Such as `aws`, `azure` etc.
  - `product` — An optional product name if the service provides more than one product for single VM instances, such as `ec2`, `lambda`, `rds` etc.
+ - `suffix` - An optional suffix in the case that groups of servers need to be made.
  - `index` — Starting at `01`, the numeric index of the server. Required even if there is only one server.
 
 An example would for a pair of servers on AWS EC2 would be:
@@ -33,10 +34,10 @@ widgetsco-azure-vm-01
 ```
 
 ## Domain names
-Domains pointing to the relevant servers will be formatted as such:
+Domains pointing to the relevant servers must be formatted as such:
 
 ```
-	<client>-<index>.<service-product>.wsdev.org
+	<client>[-suffix].<service-product>-<index>.wsdev.org
 ```
 
 These are not public or client facing domains, and if there is a requirement for such a domain, it will be created in accordance with the standard `client-project[.test|stage].wsdev.org` scheme.
