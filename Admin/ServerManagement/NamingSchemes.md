@@ -24,7 +24,7 @@ An example would for a pair of servers on AWS EC2 would be:
 
 ```
 widgetsco-aws-ec2-01
-widgetsco-aws-ec2-01
+widgetsco-aws-ec2-02
 ```
 
 And a single of server on Azure would be:
