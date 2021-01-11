@@ -1,5 +1,5 @@
 # Whitespace development standards
-**Note: This document is currently a Work In Progress** and should not be referred to for active development. If you would like to contribute to the repository, please do so with the following steps:
+If you would like to contribute to the repository, please do so with the following steps:
 
  1. Open an issue detailing the suggested changes.
  2. If changes are agreed, make them in a branch and then create a pull request.
