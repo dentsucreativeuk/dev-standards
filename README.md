@@ -1,11 +1,12 @@
 # Whitespace development standards
-**Note: This document is currently a Work In Progress** and should not be referred to for active development. If you would like to contribute to the repository, please do so with the following steps:
 
- 1. Open an issue detailing the suggested changes.
- 2. If changes are agreed, make them in a branch and then create a pull request.
- 3. Changes will merged once reviewed.
+## Introduction
 
-The following guidance details our minimum level of standards for any work created by the Digital Production team.
+The following guidance details our minimum level of standards for any work created by the Development team.
+
+This guidance is a combination of our collective experience, industry best practice and deliberate decisions made to foster consistency and ease of maintenance. The old adage goes that "80% of software development is maintenance" - so remember to think about the next developer on any project.
+
+Our industry is young and best practice can be a moveable feast. Be deliberate in your choices and remember that just because you **can** does not mean you **should**.
 
 These are living 🍃 documents, and can be contributed to by any member of the team, provided a pull request is made beforehand.
 
