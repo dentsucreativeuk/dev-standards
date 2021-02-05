@@ -9,16 +9,16 @@ In short, any new project that is not versioned **should** follow these guidelin
 ## Target branches
 In any project under these guidelines, the following branches will always exist:
 
- - `master`
+ - `main`
  - `development`
  - `staging`
  - `production`
 
-With the exception of `master`, these are referred to as the **target** branches. This means they will never be deleted, and are used when deploying work. Commits **must never** be made directly to the target branches.
+With the exception of `main`, these are referred to as the **target** branches. This means they will never be deleted, and are used when deploying work. Commits **must never** be made directly to the target branches.
 
-The target branches **must** only contain commits that have been merged in from _work_ or _hotfix_ branches. The `master` branch **must** only be merged into once work or hotfix branches have been fully merged into the other three, and the work is considered complete.
+The target branches **must** only contain commits that have been merged in from _work_ or _hotfix_ branches. The `main` branch **must** only be merged into once work or hotfix branches have been fully merged into the other three, and the work is considered complete.
 
-Except for in special circumstances such as rebasing or tidying up branch issues, `master` is also the only branch which should be used as a root for new branches (see [FAQ](#FAQ)).
+Except for in special circumstances such as rebasing or tidying up branch issues, `main` is also the only branch which should be used as a root for new branches (see [FAQ](#FAQ)).
 
 ## Work and hotfix branches
 These are the branches in which commits should be made.
@@ -29,7 +29,7 @@ A hotfix branch can be used for short term and emergency fixes, and **should** b
 
 An example repository during work in progress might look like this:
 
- - `master`
+ - `main`
  - `WJOBB0001/new-search`
  - `WJOBB0001/featured-cta-panels`
  - `WJOBB0003/related-services`
@@ -43,12 +43,12 @@ With `WJOBB0001/new-search`, `WJOBB0001/featured-cta-panels` and `WJOBB0003/rela
 An example workflow for a simple change could therefore run as follows:
 
  1. A repository is cloned.
- 2. The branch `master` is checked out, fetched and pulled.
- 3. A new branch named `WJOBB0001/new-search` is created using the tip of `master` as a base.
+ 2. The branch `main` is checked out, fetched and pulled.
+ 3. A new branch named `WJOBB0001/new-search` is created using the tip of `main` as a base.
  4. Work is then done within `WJOBB0001/new-search` and 10 commits are made. The work is tested using a local web server.
  5. Once the work is functionally complete, it is merged into `development` and deployed to the development environment.
  6. After the work is approved, the branch `WJOBB0001/new-search` is then merged into `staging` or `production`, depending on the number of environments.
- 7. Only when the work is live and complete would the `WJOBB0001/new-search` branch be merged into `master` and then **deleted** from both the local and any remote repositories it has been pushed to.
+ 7. Only when the work is live and complete would the `WJOBB0001/new-search` branch be merged into `main` and then **deleted** from both the local and any remote repositories it has been pushed to.
 
 ### Deploying & transpiling front end code
 Until we have fully developed CI solutions, deploying is still performed directly by the developer, usually using a tool such as Capistrano. However, it is worth considering the following aspects:
@@ -62,7 +62,7 @@ If more work is required after step 5 or 6, then the original branch `WJOBB0001/
 ### Rolling back
 If the work is cancelled then the target branches must be cleaned. Either by reverting the merge commits, or if not yet pushed, resetting the head to the point before the merge commits.
 
-If however, the work has progressed enough to end up on `master`, rollback should only be performed by reversion, regardless of remote state.
+If however, the work has progressed enough to end up on `main`, rollback should only be performed by reversion, regardless of remote state.
 
 ### Avoiding conflicts
 Conflicts are an inevitable part of Git management, and while never completely avoidable, there are steps we can take to reduce their impact and frequency of occurence:
@@ -126,11 +126,11 @@ Once this information is available, a pull request can be made using the BitBuck
 
 ## FAQ
 
-### Why only branch from `master`?
+### Why only branch from `main`?
 
 Consider this scenario:
 
-1. **developer A** branches from `master` into branch `XX001/dev-1-work` and produces a number of commits.
+1. **developer A** branches from `main` into branch `XX001/dev-1-work` and produces a number of commits.
 2. **developer A** then needs the work reviewed. This branch is then merged into `development` and the work in that branch is deployed.
 3. Some days later, **developer B** branches from `development` and creates `XX002/dev-2-work`. Commits are made, and then **developer B** also needs to deploy. The branch is then merged back into `development` and reviewed.
 4. **developer A's** work is delayed by three weeks. The client cannot put it live without sign off from another party.
@@ -138,11 +138,11 @@ Consider this scenario:
 6. The QA team notice that work done by **developer A** has been also put live, as it was within the `development` branch at the time **developer B** created their branch.
 7. The client calls, absolutely livid that the change has been put live, and the dev team have to scramble to figure out what went wrong.
 
-This is a rather extreme example, but not without precedent. The important thing to remember is that `master` is the only branch which contains work which is both complete and live, which is what will form the basis of all further work.
+This is a rather extreme example, but not without precedent. The important thing to remember is that `main` is the only branch which contains work which is both complete and live, which is what will form the basis of all further work.
 
-### Why not use `production` instead of `master` as the root branch?
+### Why not use `production` instead of `main` as the root branch?
 
-It could be possible, and `production` is for all intents and purposes, and almost exact clone of master in terms of use, which means there are no technical limitations with using it in this way.
+It could be possible, and `production` is for all intents and purposes, and almost exact clone of main in terms of use, which means there are no technical limitations with using it in this way.
 
 However, `production` is a *target* branch, and should only be used as such in order to ensure deployments from that branch work well and that we can confidently compare it to the real production environments.
 
