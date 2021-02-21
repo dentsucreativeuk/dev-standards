@@ -4,3 +4,4 @@
  - [Browser Compatibility](/Admin/BrowserCompatibility.md)
  - [Documenting](/Admin/Documenting.md)
  - [Git Source Control](/Admin/Git.md)
+ - [Inclusive Language](/Admin/InclusiveLanguage.md)
