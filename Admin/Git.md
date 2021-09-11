@@ -1,31 +1,41 @@
 # Git Source Control
 > Part of [Administration](/Admin/Index.md)
 
-With a few small exceptions, the majority of work undertaken at Whitespace is not compiled or released software, and therefore does not necessitate a versioning strategy. However, due to the nature of websites this does mean the repository should be managed in a consistent, reliable manner.
+The below guidance details our overall process for dealing with version control in a consistent, predictable manner which works for all developers. There may be small deviations amongst repositories, but regardless of this, there are four 🌟 golden rules 🌟 which should always be followed:
+
+ 1. 🌟 **Only commit into a feature branch** (ideally with a job number and descriptive name).
+ 2. 🌟 **Never merge from release branches into any other branch** (for example, `release/development`, `release/production` etc).
+ 3. 🌟 **Keep your branches focused**—don't merge in other branches, work on unrelated issues (use a new branch), or rebase on release branches. Trust in git, and keep your head.
+ 4. 🌟 **If in doubt, ask.** Don't plough on regardless—it's almost always better to let someone else know if a situation is causing concern.
+
+### Ultimately, following this guidance—whatever the work, and however quickly you need to do the job—will mean more time for everyone to do the great work they want.
 
 ## Which projects does this apply to?
-In short, any new project that is not versioned **should** follow these guidelines. Any project utilising Capistrano or other automated deployment tool **must** follow these guidelines.
+In short, any new project that is not specifically following another standard **must** follow these guidelines.
 
-## Target branches
-In any project under these guidelines, the following branches will always exist:
+## Branch types
 
- - `main`
- - `development`
- - `staging`
- - `production`
+### Main branch
+The main branch (usually called `main` or `master` should be used as the starting point for any new work. It contains all work that has reached production release and has proven to be working.
 
-With the exception of `main`, these are referred to as the **target** branches. This means they will never be deleted, and are used when deploying work. Commits **must never** be made directly to the target branches.
+### Release branches
+The following branches are release branches; used for deployment to external environments:
 
-The target branches **must** only contain commits that have been merged in from _work_ or _hotfix_ branches. The `main` branch **must** only be merged into once work or hotfix branches have been fully merged into the other three, and the work is considered complete.
+ - `release/development`
+ - `release/staging`
+ - `release/production`
 
-Except for in special circumstances such as rebasing or tidying up branch issues, `main` is also the only branch which should be used as a root for new branches (see [FAQ](#FAQ)).
+Used when deploying feature branches, Commits **must never** be made directly to the release branches.
 
-## Work and hotfix branches
-These are the branches in which commits should be made.
+The release branches **must** only contain commits that have been merged in from feature branches.
 
-Work branches are for longer term (1+ day) projects, and **must** be prefixed with a job number and a forward slash.
+## Feature branches
+These are the branches in which work commits can be made. There are two main types of feature branch:
 
-A hotfix branch can be used for short term and emergency fixes, and **should** be labelled `hotfix`, and only one branch of that nature should exist at a time.
+ 1. A **work** branch, prefixed by a job number.
+ 2. A **hotfix** branch, prefixed with `hotfix/`.
+
+A hotfix branch can be used for short term and emergency fixes. For all other types of work, use a work branch.
 
 An example repository during work in progress might look like this:
 
@@ -33,11 +43,12 @@ An example repository during work in progress might look like this:
  - `WJOBB0001/new-search`
  - `WJOBB0001/featured-cta-panels`
  - `WJOBB0003/related-services`
- - `hotfix`
- - `development`
- - `production`
+ - `hotfix/memcache-issue`
+ - `release/staging`
+ - `release/development`
+ - `release/production`
 
-With `WJOBB0001/new-search`, `WJOBB0001/featured-cta-panels` and `WJOBB0003/related-services` being long term projects in progress, which may have been merged into `development` already, and a single `hotfix` branch which contains commits resolving a side-effect of a past deployment, already on `development` and ready to merge into `production`.
+With `WJOBB0001/new-search`, `WJOBB0001/featured-cta-panels` and `WJOBB0003/related-services` being projects in progress, which may have been merged into `release/development` already, and a single `hotfix/memcache-issue` branch which contains commits resolving a side-effect of a past deployment.
 
 ## Working in the repository
 An example workflow for a simple change could therefore run as follows:
@@ -46,23 +57,21 @@ An example workflow for a simple change could therefore run as follows:
  2. The branch `main` is checked out, fetched and pulled.
  3. A new branch named `WJOBB0001/new-search` is created using the tip of `main` as a base.
  4. Work is then done within `WJOBB0001/new-search` and 10 commits are made. The work is tested using a local web server.
- 5. Once the work is functionally complete, it is merged into `development` and deployed to the development environment.
- 6. After the work is approved, the branch `WJOBB0001/new-search` is then merged into `staging` or `production`, depending on the number of environments.
+ 5. Once the work is functionally complete, it is merged into `release/development` and deployed to the development environment.
+ 6. After the work is approved, the branch `WJOBB0001/new-search` is then merged into `release/staging` or `release/production`, depending on the number of environments.
  7. Only when the work is live and complete would the `WJOBB0001/new-search` branch be merged into `main` and then **deleted** from both the local and any remote repositories it has been pushed to.
 
 ### Deploying & transpiling front end code
 Until we have fully developed CI solutions, deploying is still performed directly by the developer, usually using a tool such as Capistrano. However, it is worth considering the following aspects:
 
- - Check the correct target branch is checked out before deploying as front end assets e.g: running Webpack, gulp, SVG sprites etc should be created from the correct source code for deployment.
+ - Check the correct release branch is checked out before deploying as front end assets e.g: running Webpack, gulp, SVG sprites etc should be created from the correct source code for deployment.
  - Ensure the correct work branch is checked out after a deployment, so work continues within that branch.
 
 ### Further development needed?
-If more work is required after step 5 or 6, then the original branch `WJOBB0001/new-search` should be checked out and further commits made. It can then be re-merged into the appropriate **target** branches to repeat steps 5 onwards.
+If more work is required after step 5 or 6, then the original branch `WJOBB0001/new-search` should be checked out and further commits made. It can then be re-merged into the appropriate release branches to repeat steps 5 onwards.
 
 ### Rolling back
-If the work is cancelled then the target branches must be cleaned. Either by reverting the merge commits, or if not yet pushed, resetting the head to the point before the merge commits.
-
-If however, the work has progressed enough to end up on `main`, rollback should only be performed by reversion, regardless of remote state.
+If the work is cancelled then the release branches must be cleaned. Either by reverting the merge commits, or if not yet pushed, resetting the head to the point before the merge commits.
 
 ### Avoiding conflicts
 Conflicts are an inevitable part of Git management, and while never completely avoidable, there are steps we can take to reduce their impact and frequency of occurence:
@@ -103,7 +112,7 @@ This will automatically relate the commit to the issue in both directions and ma
 Merges **must** be performed using the `--no-ff` flag or an equivalent "Always create merge commits" option. This will help avoid the loss of topological information about branches that have since been removed.
 
 ## Bitbucket pull requests
-On a protected Bitbucket repository, the **target** branches may not be directly writeable. In this case, merges can be made with a pull request.
+On a protected Bitbucket repository, the **release** branches may not be directly writeable. In this case, merges can be made with a pull request.
 
 Pull requests are usually handled by a single repository or project leader, who is responsible for reviewing and merging branches. It is then the responsibility of either the project lead or developer to deploy the resulting code. This decision is made during the pull request.
 
@@ -131,23 +140,21 @@ Once this information is available, a pull request can be made using the BitBuck
 Consider this scenario:
 
 1. **developer A** branches from `main` into branch `XX001/dev-1-work` and produces a number of commits.
-2. **developer A** then needs the work reviewed. This branch is then merged into `development` and the work in that branch is deployed.
-3. Some days later, **developer B** branches from `development` and creates `XX002/dev-2-work`. Commits are made, and then **developer B** also needs to deploy. The branch is then merged back into `development` and reviewed.
+2. **developer A** then needs the work reviewed. This branch is then merged into `release/development` and the work in that branch is deployed.
+3. Some days later, **developer B** branches from `release/development` and creates `XX002/dev-2-work`. Commits are made, and then **developer B** also needs to deploy. The branch is then merged back into `release/development` and reviewed.
 4. **developer A's** work is delayed by three weeks. The client cannot put it live without sign off from another party.
-5. **developer B's** work is approved! The work is merged from `XX002/dev-2-work` into `production` and deployed.
-6. The QA team notice that work done by **developer A** has been also put live, as it was within the `development` branch at the time **developer B** created their branch.
+5. **developer B's** work is approved! The work is merged from `XX002/dev-2-work` into `release/production` and deployed.
+6. The QA team notice that work done by **developer A** has been also put live, as it was within the `release/development` branch at the time **developer B** created their branch.
 7. The client calls, absolutely livid that the change has been put live, and the dev team have to scramble to figure out what went wrong.
 
 This is a rather extreme example, but not without precedent. The important thing to remember is that `main` is the only branch which contains work which is both complete and live, which is what will form the basis of all further work.
 
-### Why not use `production` instead of `main` as the root branch?
+### Why not use `release/production` instead of `main` as the root branch?
 
-It could be possible, and `production` is for all intents and purposes, and almost exact clone of main in terms of use, which means there are no technical limitations with using it in this way.
-
-However, `production` is a *target* branch, and should only be used as such in order to ensure deployments from that branch work well and that we can confidently compare it to the real production environments.
+The `release/production` branch is a release branch, which means it can contain the sum of many other branches not yet approved to be merged into `main`. Using `main` as the root branch for all new work ensure that only live, approved and fully tested work forms the basis of new commits.
 
 ### What is the importance of "merge commits"?
 
-When merging a branch into another, Git has a very useful feature to keep the branch topology tidy, called "fast forwards". If it determines the new commits are chronologically in advance of the tip of your target branch, it will simply "fast forward" the target to the tip of the new branch during a commit. This produces a nice clean history, especially when viewing in graph modes. Unfortunately, this has the added side effect of essentially wiping out the historical information of where a branch was created, which commits were made within it, and then when it was merged.
+When merging a branch into another, Git has a very useful feature to keep the branch topology tidy, called "fast forwards". If it determines the new commits are chronologically in advance of the tip of your release branch, it will simply "fast forward" the release to the tip of the new branch during a commit. This produces a nice clean history, especially when viewing in graph modes. Unfortunately, this has the added side effect of essentially wiping out the historical information of where a branch was created, which commits were made within it, and then when it was merged.
 
 The benefit to a merge commit, is that despite its tendency to produce more complex topology graphs, the history is retained and makes understanding the work which went into an old (often deleted) branch much easier.
