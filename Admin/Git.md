@@ -10,13 +10,14 @@ The below guidance details our overall process for dealing with version control 
 
 ### Ultimately, following this guidance—whatever the work, and however quickly you need to do the job—will mean more time for everyone to do the great work they want.
 
-## Which projects does this apply to?
-In short, any new project that is not specifically following another standard **must** follow these guidelines.
+## Which projects does this guidance apply to?
+In short, any project created while this guidance exists, and is not specifically following another standard, **must** follow these guidelines.
 
-## Branch types
+## Accepted branch types
+While any kind of branch can be made on a local repository, the following types of branch are accepted within the origin:
 
 ### Main branch
-The main branch (usually called `main` or `master` should be used as the starting point for any new work. It contains all work that has reached production release and has proven to be working.
+The main branch (literally called `main`) should be used as the starting point for any new work. It contains all work that has reached production release and has proven to be working.
 
 ### Release branches
 The following branches are release branches; used for deployment to external environments:
@@ -82,7 +83,7 @@ Conflicts are an inevitable part of Git management, and while never completely a
 ## Commit messages
 Commit messages **must** be concise, clear and broadly describe the work done in that commit. They **should** be written in the imperative present tense, and the first line of a commit **should** be within 50 characters in length. If a commit message needs to be described more thoroughly use the [_Subject and Message_](https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-commit.html#_discussion) syntax: where the first line is taken as the subject, then a line return, then the body of the message.
 
-If a commit cannot be described in one subject or phrase, it **must** be split into smaller, more detailed commits.
+If a commit cannot be described in one subject or phrase, it **must** be split into smaller, more detailed commits (see [Avoiding conflicts](#avoiding-conflicts).
 
 Examples:
 
