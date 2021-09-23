@@ -69,3 +69,4 @@ The following services and their short names can be used:
  - IOMart (`iomart`)
  - DataVita (`dv`)
  - China Net Cloud (`cnc`)
+ - Pulsant (`pulsant`)
