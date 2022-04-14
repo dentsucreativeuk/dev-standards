@@ -11,12 +11,26 @@
 
 ## Servers
 
-| | Development | Live
-| -- | -- | --
-| **Host** | [domain] | [domain]
-| **Name** | [server name (not an IP!)] | [server name (not an IP!)]
-| **User** | [user] | [user]
-| **Path** | [root path] | [root path]
+| | Development
+| -- | --
+| **Host** | [domain]
+| **Name** | [server name (not an IP!)]
+| **User** | [user]
+| **Path** | [root path]
+
+| | Staging
+| -- | --
+| **Host** | [domain]
+| **Name** | [server name (not an IP!)]
+| **User** | [user]
+| **Path** | [root path]
+
+| | Production
+| -- | --
+| **Host** | [domain]
+| **Name** | [server name (not an IP!)]
+| **User** | [user]
+| **Path** | [root path]
 
 ## File structure
 
