@@ -4,7 +4,6 @@
 
 ## Details
 
-* **Lead developer** [Developer name](email@whitespacers.com)
 * **CMS used** [CMS]
 * **Production domain** [[live.domain.tld]]([live.domain.tld])
 * **Pattern library** [[http://pattern-library-url.tld/path]]([pattern-library-url.tld/path])
