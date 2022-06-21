@@ -4,7 +4,7 @@
 ## Google pagespeed
 
 ### Minimum scores
-Every project developed by Whitespace for web consumption should be tested against the [Google PageSpeed](https://developers.google.com/speed/pagespeed/insights/) tool and unless otherwise agreed, **must** score _at least_ **85** for desktop and **75** for mobile.
+Every project developed for web consumption should be tested against the [Google PageSpeed](https://developers.google.com/speed/pagespeed/insights/) tool and unless otherwise agreed, **must** score _at least_ **85** for desktop and **75** for mobile.
 
 In addition to that, the following issues **must not** appear on a PageSpeed report:
 
@@ -34,4 +34,4 @@ When inserting images into static, non-cms driven code or basic HTML templates, 
 | PNG    | Lossless, Lossy, Pallet reduction, Bit depth reduction, Interlacing, Meta removal | Photoshop, Imageoptim, ImageAlpha, pngquant, TinyPNG |
 
 ### TTFB
-When browsing any Whitespace web property on a broadband connection, the Time To First Byte (TTFB) for any CMS powered web property **must** be at minimum **500ms**, and **should** be **200ms** or lower.
+When browsing any web property on a broadband connection, the Time To First Byte (TTFB) for any CMS powered web property **must** be at minimum **500ms**, and **should** be **200ms** or lower.

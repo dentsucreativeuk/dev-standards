@@ -1,4 +1,4 @@
-# Whitespace development standards
+# Our development standards
 
 ## Introduction
 

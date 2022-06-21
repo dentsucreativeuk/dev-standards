@@ -4,7 +4,7 @@
 The following tools and resources will should be used to lint and perform other quality checks on your code.
 
 Linters are pre-configured with the IDE Toolkit available here:
-https://github.com/Whitespacers/ide-toolkit
+https://github.com/dentsucreativeuk/ide-toolkit
 
 This repository is intended to be included as a submodule in order to provide shortcuts for linting, testing and ensuring code quality.
 

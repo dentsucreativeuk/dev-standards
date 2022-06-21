@@ -7,7 +7,7 @@ The following standards outline the requirements for production of CSS or SCSS c
 All CSS should be produced in SCSS (SASS), and only in plain CSS if otherwise agreed with the technical lead.
 
 ## BEM
-Whitespace produced CSS should directly follow the BEM methodology standard for naming schemes. The full standards are detailed at the [official BEM website](http://getbem.com/naming/).
+In house produced CSS should directly follow the BEM methodology standard for naming schemes. The full standards are detailed at the [official BEM website](http://getbem.com/naming/).
 
 ## Filenames
 All CSS files should either use either the `.css` or `.scss` extensions, depending on whether pure CSS or SCSS is being used.
@@ -94,7 +94,7 @@ CSS/SCSS files **should** be split into logical components. Usually these compon
  - Theme based augmentations
 
 ## Response points
-Unless a prior agreement to the contrary has been reached, all media-based CSS **must** adhere to the currently approved Whitespace response points. The response points define at which point layout metrics may be redefined in a range of viewport sizes. They do not define other attributes such as rotation, DPI or device specific features.
+Unless a prior agreement to the contrary has been reached, all media-based CSS **must** adhere to the currently approved response points. The response points define at which point layout metrics may be redefined in a range of viewport sizes. They do not define other attributes such as rotation, DPI or device specific features.
 
 ![Responsive guidlines](https://docs.google.com/drawings/d/e/2PACX-1vS6xDjg-qg2IKIq9D22RcYmFF_n3QbIngPidWtgvYc95KNw7JONDwRz3qigmzPsm6_3PBJSsvt_RLSN/pub?w=962&h=637)
 
@@ -147,7 +147,7 @@ Media queries, where applicable, **must** be defined in their own files organise
  3. Standard response point based CSS, subdivided identically to top level.
 
 ## Linting
-All SASS/CSS should be linted using [Stylelint](https://stylelint.io). The configuration file can be found within the [IDE Toolkit](https://github.com/Whitespacers/ide-toolkit) repository, and the following main rules are enforced:
+All SASS/CSS should be linted using [Stylelint](https://stylelint.io). The configuration file can be found within the [IDE Toolkit](https://github.com/dentsucreativeuk/ide-toolkit) repository, and the following main rules are enforced:
 
 | Rule | Enforcement |
 | ---  | --- |
@@ -168,7 +168,7 @@ All SASS/CSS should be linted using [Stylelint](https://stylelint.io). The confi
 | `block-closing-brace-empty-line-before` | Ensures no empty lines are created before the closing brace of a single rule. |
 | `block-no-empty` | Disallows empty rule blocks. |
 | `max-empty-lines` | Enforces a maximum of **2** empty lines between rules and blocks. |
-| `no-eol-whitespace` | Disallows whitespace at the end of lines. |
+| `no-eol-whitespace` | Disallows white space at the end of lines. |
 | `no-extra-semicolons` | Disallows multiple semicolons at the end of properties. |
 
 The rules above can be found in greater detail on the [Stylelint website](https://stylelint.io/user-guide/rules/).

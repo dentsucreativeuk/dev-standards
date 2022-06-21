@@ -1,4 +1,4 @@
-# Whitespace development standards - Contributing
+# Development standards - Contributing
 If you would like to contribute to the development standards documents, there are some standards (for the standards) to follow.
 
 ## Tone of voice and language

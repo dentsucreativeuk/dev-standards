@@ -15,10 +15,10 @@ Broadly, the following PSR guideline indices from the PHP Framework Interop Grou
 ## Differences between PHP and the General guidance
 
 ### Spacing and indentation
-The PSR 2 Coding Style Guide outlines that indentation of 4 spaces **must** be used, instead of tabs. This overrides the Whitespace [General coding standards](/Coding/General.md) on this aspect.
+The PSR 2 Coding Style Guide outlines that indentation of 4 spaces **must** be used, instead of tabs. This overrides the [General coding standards](/Coding/General.md) on this aspect.
 
 ## Exceptions
 The following exceptions from the PSR guidance are applicable:
 
 1. When working within environments or code older than PHP 7, the PSR 4 Autoloading standard will be considered **optional** only. A pseudo namespacing alternative for PHP 5.3 and older is detailed in PSR 1 under "Namespace and Class Names".
-2. The soft limit on line length in PSR 2 should be considered overidden by the Whitespace [General coding standards](/Coding/General.md), in which the 120 character limit **must not** be exceeded.
+2. The soft limit on line length in PSR 2 should be considered overidden by the [General coding standards](/Coding/General.md), in which the 120 character limit **must not** be exceeded.
