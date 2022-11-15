@@ -41,7 +41,7 @@ Domains pointing to the relevant servers must be formatted as such:
   <client>[-suffix]-<index>.<service-product>
 
   // Domain
-	<client>[-suffix]-<index>.<service-product>.wsdev.org
+	<client>[-suffix]-<index>.<service-product>.dcdev.uk
 ```
 
 For instance
@@ -51,10 +51,10 @@ For instance
   widgetsco-01.aws-ec2
 
   // Domain
-  widgetsco-01.aws-ec2.wsdev.org
+  widgetsco-01.aws-ec2.dcdev.uk
 ```
 
-These are not public or client facing domains, and if there is a requirement for such a domain, it will be created in accordance with the standard `client-project[.test|stage].wsdev.org` scheme.
+These are not public or client facing domains, and if there is a requirement for such a domain, it will be created in accordance with the standard `client-project[.test|stage].dcdev.uk` scheme.
 
 ## Service reference
 
