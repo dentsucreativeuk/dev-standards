@@ -17,7 +17,7 @@ In short, any project created while this guidance exists, and is not specificall
 While any kind of branch can be made on a local repository, the following types of branch are accepted within the origin:
 
 ### Main branch
-The main branch (literally called `main`) should be used as the starting point for any new work. It contains all work that has reached production release and has proven to be working.
+The main branch (usually called `main`) should be used as the starting point for any new work. It contains all work that has reached production release and has proven to be working.
 
 ### Release branches
 The following branches are release branches; used for deployment to external environments:
@@ -30,13 +30,28 @@ Used when deploying feature branches, Commits **must never** be made directly to
 
 The release branches **must** only contain commits that have been merged in from feature branches.
 
+### Release and merge order
+
+In terms of merging in work, they **must** always follow a specific direction. Work must be created in a work branch, merged into release branches in order, and then merged into `main` when complete. If a release branch is skipped, it will almost certainly create confusion, unexpected commits, and in some cases conflicts when work dependent on previous work from `main` is undertaken by the another developer, who then tries to merge it into the release branch missing the first portion of work.
+
+The specific order in which merges should take place is likely obvious, but the following should make things completely clear:
+
+ 1. `release/development`
+ 2. `release/staging` (if applicable)
+ 3. `release/production`
+ 4. `release/main`
+
+#### When to merge back to `main`?
+
+This is a question often asked, and the answer is not always obvious. The purpose of `main` is to act as a centralised source of truth from which all future work branches should be created. If you are confident that the merge to `release/production` and its subsequent deployment has been **proven and approved** by both the AM team and client, then it is very likely safe to then merge into `main`.
+
 ## Feature branches
 These are the branches in which work commits can be made. There are two main types of feature branch:
 
  1. A **work** branch, prefixed by a job number.
  2. A **hotfix** branch, prefixed with `hotfix/`.
 
-A hotfix branch can be used for short term and emergency fixes. For all other types of work, use a work branch.
+A hotfix branch should be used for short term and emergency fixes that do not linger on the repository. For all other types of work, use a work branch.
 
 An example repository during work in progress might look like this:
 
@@ -57,31 +72,36 @@ An example workflow for a simple change could therefore run as follows:
  1. A repository is cloned.
  2. The branch `main` is checked out, fetched and pulled.
  3. A new branch named `WJOBB0001/new-search` is created using the tip of `main` as a base.
- 4. Work is then done within `WJOBB0001/new-search` and 10 commits are made. The work is tested using a local web server.
+ 4. Work is then done within `WJOBB0001/new-search` and 10 commits are made. The work is tested using a local web server. Periodic pushes are performed in order to retain the work.
  5. Once the work is functionally complete, it is merged into `release/development` and deployed to the development environment.
  6. After the work is approved, the branch `WJOBB0001/new-search` is then merged into `release/staging` or `release/production`, depending on the number of environments.
  7. Only when the work is live and complete would the `WJOBB0001/new-search` branch be merged into `main` and then **deleted** from both the local and any remote repositories it has been pushed to.
 
-### Deploying & transpiling front end code
-Until we have fully developed CI solutions, deploying is still performed directly by the developer, usually using a tool such as Capistrano. However, it is worth considering the following aspects:
-
- - Check the correct release branch is checked out before deploying as front end assets e.g: running Webpack, gulp, SVG sprites etc should be created from the correct source code for deployment.
- - Ensure the correct work branch is checked out after a deployment, so work continues within that branch.
-
 ### Further development needed?
-If more work is required after step 5 or 6, then the original branch `WJOBB0001/new-search` should be checked out and further commits made. It can then be re-merged into the appropriate release branches to repeat steps 5 onwards.
+If more work is required after final release and deployment to production, then the original work branch **must not** be used. A new work branch (which may have the same name) should be created and further commits made. It can then be re-merged into the appropriate release branches as usual.
 
 ### Rolling back
-If the work is cancelled then the release branches must be cleaned. Either by reverting the merge commits, or if not yet pushed, resetting the head to the point before the merge commits.
+If the work happens to be cancelled then the release branches must be cleaned and deployments reversed. A rollback can usually be performed by reverting the merge commits in the relevant release branches.
+
+In the case of a CI process, the new deployment will contain the original code as before the merge, but any database migrations may not have been reverted on the server. As far as the CI is concerned, this is just another deployment. Note that you may need to reverse migrations manually.
+
+**Do not** be tempted to use the rollback function of the CI process (such as Capistrano or Deployer) except when there is an unresolvable issue with git or the repository. While it will likely work, git is the source of truth for a codebase's status and a new deployment should be made. In either case, database migrations may need to be reversed manually, as there are no provisions for these within a CI rollback.
+
+### Deploying & transpiling front end code
+Many recent projects have fully developed CI solutions, which means deployment is performed by a single merge+push process. On older repositories, deploying is still performed directly by the developer, usually using a tool such as Capistrano or by manual SFTP. However, it is still worth considering the following aspects:
+
+ - Check the **correct release branch** is checked out before deploying as front end assets e.g: running Webpack, gulp, SVG sprites etc should be created from the correct source code for deployment.
+ - Ensure the **correct work branch** is checked out after a deployment, so work continues within that branch.
 
 ### Avoiding conflicts
 Conflicts are an inevitable part of Git management, and while never completely avoidable, there are steps we can take to reduce their impact and frequency of occurence:
 
  1. **Keep commits small and simple.** The old adage "push once, commit often" still applies, and for good reason. Smaller commits mean less work to reason about when merging, and make commit messages easier to write.
  2. **Avoid working outside your remit.** When working within files, avoid changing code that isn't directly related to the work. This ensures commit patches are easy to digest as well as the reliability of potential merges.
+ 3. **Talk to others.** Are you the only developer on this project? Is there a lot of long term work going on that might be made stale by yours? These problems can sometimes be avoided by managing account and client expectations as much as they can be technically.
 
 ## Commit messages
-Commit messages **must** be concise, clear and broadly describe the work done in that commit. They **should** be written in the imperative present tense, and the first line of a commit **should** be within 50 characters in length. If a commit message needs to be described more thoroughly use the [_Subject and Message_](https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-commit.html#_discussion) syntax: where the first line is taken as the subject, then a line return, then the body of the message.
+Commit messages **must** be concise, clear and broadly describe the work done in that commit. They **should** be written in the imperative present tense (i.e 'Install WidgetCo plugin'), and the first line of a commit **should** be within 50 characters in length. If a commit message needs to be described more thoroughly use the [_Subject and Message_](https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-commit.html#_discussion) syntax: where the first line is taken as the subject, then a line return, then the body of the message.
 
 If a commit cannot be described in one subject or phrase, it **must** be split into smaller, more detailed commits (see [Avoiding conflicts](#avoiding-conflicts).
 
@@ -152,10 +172,12 @@ This is a rather extreme example, but not without precedent. The important thing
 
 ### Why not use `release/production` instead of `main` as the root branch?
 
-The `release/production` branch is a release branch, which means it can contain the sum of many other branches not yet approved to be merged into `main`. Using `main` as the root branch for all new work ensure that only live, approved and fully tested work forms the basis of new commits.
+The `release/production` branch is a release branch, which means it can contain the sum of many other branches not yet approved to be merged into `main`. Using `main` as the root branch for all new work ensure that only live, approved and fully proven work forms the basis of new commits.
 
 ### What is the importance of "merge commits"?
 
 When merging a branch into another, Git has a very useful feature to keep the branch topology tidy, called "fast forwards". If it determines the new commits are chronologically in advance of the tip of your release branch, it will simply "fast forward" the release to the tip of the new branch during a commit. This produces a nice clean history, especially when viewing in graph modes. Unfortunately, this has the added side effect of essentially wiping out the historical information of where a branch was created, which commits were made within it, and then when it was merged.
 
 The benefit to a merge commit, is that despite its tendency to produce more complex topology graphs, the history is retained and makes understanding the work which went into an old (often deleted) branch much easier.
+
+If you find that your local branch is stale and a pull is required, it is not required in this case to create a merge commit, and a simple fast-forward merge will suffice.
