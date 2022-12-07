@@ -1,10 +1,19 @@
-# [Website Name]
+# Posterscope
 
-[A short description of what the website is and broadly, the technology stack used to create it...]
+This website is showing the information about posterscope organisation  there projects , articles , team members there technology stack and other details.
+
+website is created from different blocks which can be reusable in any page of website and can be control through the CMS.
+every block has its own structure(which is called "content model" in CMS term). from that content model we can create any number of content  (like creating instace of class). content model works like bluprint for creating content. if you made any changes in content model then you need to update code.(content model is for developer only. not for content creater).
+
+* **Technology stack used.**
+* Front-end : Blade templates , CSS (Bootstrap) , Javascript.
+* Back-end  : PHP 8.1.10
+* Framework : Laravel 9.34.0 
+
 
 ## Details
 
-* **CMS used** [CMS]
+* **CMS used** Kontent.ai [https://kontent.ai/]
 * **Production domain** [[live.domain.tld]]([live.domain.tld])
 * **Pattern library** [[http://pattern-library-url.tld/path]]([pattern-library-url.tld/path])
 
@@ -37,24 +46,51 @@
 
 ```
 ├── ./
-├── privatefolder/ [1]
-├── public_html/ [2]
-│   ├── pathname/
-│   │   ├── subpathname/ [3]
+├── app/
+|   ├── Base
+|   |   ├── Http
+|   |       ├── Controllers [1]
+|   |
+|   ├── Http
+|       ├── Controllers [2]
+|
+├── resources
+|   ├── assets [3]
+|   ├── js [4]
+|   ├── scss [5]
+|   ├── views [6]
+|
+├── routes [7]
 ```
 
-* [1] [Description of private path contents.]
-* [2] [Description of public path contents.]
-* [3] [Description of another public path contents.]
+* [1] This folder contains common cotroller for delivery client api and queries for fetching common data.
+* [2] This contains all other controllers for fetching data from CMS.
+* [3] Assets folder contains favicon, fonts and images files.
+* [4] This contains Javascripts.
+* [5] This contains sass files.
+* [6] This contains all blade templates for showing data on front end.
+* [7] This contains all routes.
 
 ## Development process
+ 
+ 1. Clone the repository at [https://bitbucket.org/whitespacers/dentsu_posterscope_website/src/79ffe9f4065e109ff3e2e0e267308578cea70e47/?at=WIRGL0034%2Fposterscope)]
+ 2. make sure that php installed on your system. [https://www.php.net/manual/en/install.php]
+ 4. "npm install"
+ 5. "composer install"
+ 6. "php artisan serve"
+ 7. "npm run dev" ---> for buiding front-end assets.
 
-[Detail the steps required to allow working on the site locally, and any gotchas which might need to be thought about, such as remotely hosted media, thirdy party services, etc.]
+* add ".env" file in same  directory where ".env.example" file exist. 
+* you can copy it from ".env.example".
+* add project id (which you get in CMS) in new ".env".
 
-[Include steps such as `npm install` (including the version of node required), `composer install`, any bespoke requirements etc.]
+####  **step to get project ID from CMS**
 
- 1. Clone the repository at [https://repo-url.com/](https://repo-url.com/)
- 2. [Step 2...]
+1. go to project settings.
+2. click on API keys .
+3. copy project ID from there.
+ 
+ 
 
 ### Available build tasks
 
@@ -62,8 +98,11 @@ The following tasks are available for building files into distribution folders.
 [Please ensure at least one non-watching build task is available]
 
 | Command | Description | Watches?
-| -- | -- | --
-| [build command] | [describe what the task does] | [Y\N]
+| :-- | :-- | :--
+| php artisan serve | this will run the application on development server | any changes in php files.
+| npm run dev | this build the front-end assets(css, js, images etc.)  | any changes in blade templates, css, js and assets.( need to reload  browser window).
+| npm run watch | this build the front-end assets(css, js, images etc.)  | any changes in blade templates, css, js and assets ( without reloading browser window).
+| npm run prod | this will build production files | [N]
 
 ### Deployment tasks
 
@@ -88,14 +127,13 @@ The following notable or bespoke JS libraries have been used on the site:
 
 | Name | NPM? | Purpose
 | :-- | -- | :--
-| **[Library name]** | [Y/N] | Purpose
-| **[Another library name]** | [Y/N] | Purpose
+| **laravel-mix** | [npm i laravel-mix] | for keeping watch at front-end assests and files without reloading browser window.
 
 ## External Fonts used
+| **Font** | **Varient** | **Link**
+| -- | -- | --
+| Avenir Next | avenir-next-medium | https://www.fonts.com/
 
-[Detail any externally provided fonts and which provider they come from]
-
-* [font name ([font variant])] - [Provider]([provider.url])
 
 ## Scheduled tasks (Cron, task scheduler)
 
@@ -104,5 +142,17 @@ The following notable or bespoke JS libraries have been used on the site:
 | [command] | [server name] | [detail of purpose]
 
 ## Other concerns
+* **some URL are kept static.**
 
-[Please detail anything else the developer should be aware of that is not covered above. Delete this if you have no extra information to give]
+1. get-in-touch page URL are added in "Get in touch button" statically in Navigation bar. so if you change it in CMS then please change it in button as well.
+2. "what we think" page URL(what-we-think) is added statically in code for filtering operation and pagination.
+3. "Our work" page URL(our-work) is added statically in code for filtering operation and pagination.
+
+## you can  change above url in code here 
+
+| **Page** | **Path**
+| :-- | :--
+| get-in-touch | resource/views/layouts/header-nav.blade
+| what we think | app/http/controllers/homepageController.php <br/> app/http/controllers/filterController.php
+| Our work | app/http/controllers/homepageController.php <br/> app/http/controllers/filterController.php
+
